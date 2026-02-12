@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Ikram</title>
+
+  <!-- Handwriting font -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Dancing Script', cursive;
+      background-color: #0b0b0b;
+      color: #f5f5f5;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* HEADER / INTRO */
+    header {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: linear-gradient(180deg, #0b0b0b 0%, #1a1a1a 100%);
+    }
+
+    header h1 {
+      color: #c1121f;
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    /* ENVELOPE IMAGE */
+    .envelope-img {
+      width: 250px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .envelope-img:hover {
+      transform: scale(1.05);
+    }
+
+    /* MODAL LETTER */
+    .letter-modal {
+      display: none; /* hide initially */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .letter {
+      background: #fff8f0;
+      border: 1px solid rgba(193,18,31,0.5);
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 700px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      color: #2a2a2a;
+      font-size: 1.2rem;
+      cursor: default;
+    }
+
+    .letter::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .letter::-webkit-scrollbar-thumb {
+      background-color: rgba(193,18,31,0.5);
+      border-radius: 4px;
+    }
+
+    .letter h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #c1121f;
+      pointer-events: none;
+    }
+
+    .letter p {
+      margin-bottom: 20px;
+      pointer-events: none;
+    }
+
+    .signature {
+      text-align: right;
+      margin-top: 20px;
+      font-style: italic;
+      opacity: 0.9;
+      font-size: 1.2rem;
+      pointer-events: none;
+    }
+
+    /* SURPRISE SECTION */
+    .surprise {
+      min-height: 100vh;
+      padding: 60px 20px;
+      background: linear-gradient(180deg, #1a1a1a 0%, #0b0b0b 100%);
+      text-align: center;
+    }
+
+    .surprise h2 {
+      color: #c1121f;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .surprise p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER WITH ENVELOPE -->
+  <header>
+    <img src="envelope.jpg" alt="Envelope" class="envelope-img" onclick="openLetter()">
+  </header>
+
+  <!-- MODAL LETTER -->
+  <div class="letter-modal" id="letterModal" onclick="closeLetter()">
+    <div class="letter" id="letterContent">
+      <h1>Happy Birthday, My Ikram!</h1>
+
+      <p>
+        I know we’ve had our ups and downs, and I know sometimes my behavior hasn’t been perfect. I can be stubborn, overthinking, or emotional but through it all, you’ve been patient, understanding, and loving. Thank you for always being there for me, even when I make things complicated.
+      </p>
+
+      <p>
+        I want you to know that I appreciate every little thing you do, the way you make me laugh, the way you calm me down, and the way you love me even when I’m difficult. You make me want to be a better version of myself every single day.
+      </p>
+
+      <p>
+        On your special day, I just want to remind you how much you mean to me. You’re my best friend, my safe place, and my greatest happiness. I’m so grateful for every memory we’ve created together, from the fun and silly moments to the tough times that made us stronger.
+      </p>
+
+      <p>
+        I hope this year brings you endless joy, success, and everything your heart desires. I promise to keep learning, growing, and loving you with all my heart, through all the ups and downs that life throws at us.
+      </p>
+
+      <p>
+        Happy birthday, my sayang. I love you more than words can ever express, and I’m so lucky to have you in my life.
+      </p>
+
+      <p>
+        I love you sayang, I sayang you sayang, MUAHHHHHHHH. YOU ARE MY FAVOURITEE!!
+      </p>
+
+      <div class="signature">
+        — With all my love 
+      </div>
+    </div>
+  </div>
+
+  <!-- SURPRISE SECTION -->
+<section class="surprise">
+  <h2></h2>
+  <p>
+    
+  </p>
+
+  <!-- CLICKABLE IMAGE -->
+  <a href="picture.html">
+    <img src="button.jpg" alt="Click for next surprise" style="width:250px; margin-top:20px; cursor:pointer; border-radius:12px; transition: transform 0.3s ease;">
+  </a>
+<p>
+
+  <!-- CLICKABLE IMAGE -->
+  <a href="10 things.html">
+    <img src="image 1.jpg" alt="Click for next surprise" style="width:250px; margin-top:20px; cursor:pointer; border-radius:12px; transition: transform 0.3s ease;">
+  </a>
+<p>
+
+  <!-- CLICKABLE IMAGE -->
+  <a href="game.html">
+    <img src="image.jpg" alt="Click for next surprise" style="width:250px; margin-top:20px; cursor:pointer; border-radius:12px; transition: transform 0.3s ease;">
+  </a>
+<p>
+
+  <!-- CLICKABLE IMAGE -->
+  <a href="quiz.html">
+    <img src="image 2.jpg" alt="Click for next surprise" style="width:250px; margin-top:20px; cursor:pointer; border-radius:12px; transition: transform 0.3s ease;">
+  </a>
+<p>
+  
+
+  <script>
+    const img = document.querySelector('.surprise img');
+    img.addEventListener('mouseover', () => img.style.transform = 'scale(1.05)');
+    img.addEventListener('mouseout', () => img.style.transform = 'scale(1)');
+  </script>
+</section>
+
+  <script>
+    function openLetter() {
+      document.getElementById('letterModal').style.display = "flex"; // show modal
+      document.body.style.overflow = 'hidden'; // disable scroll
+    }
+
+    function closeLetter() {
+      document.getElementById('letterModal').style.display = "none"; // hide modal
+      document.body.style.overflow = 'auto'; // enable scroll
+    }
+
+    // prevent click inside letter from closing modal
+    document.getElementById('letterContent').addEventListener('click', function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

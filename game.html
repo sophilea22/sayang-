@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Love Letter Maze 🎀</title>
+<style>
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #c07b97, #481717);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    overflow: hidden;
+}
+
+h1 {
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    margin-top: 20px;
+}
+
+/* Maze container */
+#maze {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background: #fff;
+    margin-top: 30px;
+    border: 4px solid #fff;
+}
+
+/* Maze walls */
+.wall {
+    position: absolute;
+    background: #ff4d94;
+}
+
+/* Player */
+#player {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+}
+
+/* Target */
+#target {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+}
+
+/* Surprise image */
+#surprise {
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    display:none;
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+/* Confetti */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: hsl(0, 0%, 0%);
+    animation: fall 2s linear forwards;
+}
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1;}
+    100% { transform: translateY(400px) rotate(360deg); opacity: 0;}
+}
+</style>
+</head>
+<body>
+
+<h1>Love Letter Maze 💌</h1>
+<div id="maze">
+    <div id="player">💌</div>
+    <div id="target">❤️</div>
+
+    <!-- Walls -->
+    <div class="wall" style="top:50px; left:0; width:300px; height:20px;"></div>
+    <div class="wall" style="top:150px; left:100px; width:300px; height:20px;"></div>
+    <div class="wall" style="top:250px; left:0; width:300px; height:20px;"></div>
+</div>
+
+<img id="surprise" src="sophie.jpg" alt="Birthday Surprise">
+
+<script>
+// Player movement
+const player = document.getElementById('player');
+const maze = document.getElementById('maze');
+const target = document.getElementById('target');
+const walls = document.querySelectorAll('.wall');
+const surprise = document.getElementById('surprise');
+
+let playerPos = {x: 0, y: 0};
+const step = 20;
+
+// Set player start position
+player.style.left = playerPos.x + 'px';
+player.style.top = playerPos.y + 'px';
+
+// Target fixed
+target.style.left = '350px';
+target.style.top = '350px';
+
+// Collision detection
+function isColliding(rect1, rect2){
+    return !(
+        rect1.right < rect2.left ||
+        rect1.left > rect2.right ||
+        rect1.bottom < rect2.top ||
+        rect1.top > rect2.bottom
+    );
+}
+
+// Confetti
+function createConfetti(x, y){
+    for(let i=0;i<30;i++){
+        const c = document.createElement('div');
+        c.classList.add('confetti');
+        c.style.left = x + 'px';
+        c.style.top = y + 'px';
+        c.style.background = `hsl(${Math.random()*360}, 70%, 50%)`;
+        c.style.animationDuration = (1 + Math.random()) + 's';
+        document.body.appendChild(c);
+        setTimeout(()=> c.remove(), 2000);
+    }
+}
+
+document.addEventListener('keydown', (e)=>{
+    let oldX = playerPos.x;
+    let oldY = playerPos.y;
+
+    if(e.key === "ArrowUp") playerPos.y -= step;
+    if(e.key === "ArrowDown") playerPos.y += step;
+    if(e.key === "ArrowLeft") playerPos.x -= step;
+    if(e.key === "ArrowRight") playerPos.x += step;
+
+    // Keep inside maze
+    playerPos.x = Math.max(0, Math.min(playerPos.x, maze.clientWidth - player.clientWidth));
+    playerPos.y = Math.max(0, Math.min(playerPos.y, maze.clientHeight - player.clientHeight));
+
+    player.style.left = playerPos.x + 'px';
+    player.style.top = playerPos.y + 'px';
+
+    // Wall collision
+    const playerRect = player.getBoundingClientRect();
+    walls.forEach(wall => {
+        const wallRect = wall.getBoundingClientRect();
+        if(isColliding(playerRect, wallRect)){
+            playerPos.x = oldX;
+            playerPos.y = oldY;
+            player.style.left = playerPos.x + 'px';
+            player.style.top = playerPos.y + 'px';
+        }
+    });
+
+    // Target reached
+    const targetRect = target.getBoundingClientRect();
+    if(isColliding(playerRect, targetRect)){
+        surprise.style.display = 'block';
+        createConfetti(playerPos.x, playerPos.y);
+    }
+});
+</script>
+
+</body>
+</html>

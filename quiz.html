@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quiz For Ikram 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#821717,#821717,#821717);
+    overflow:hidden;
+}
+
+.quiz-container{
+    width:550px;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.1);
+    text-align:center;
+    animation:fadeIn 1s ease;
+    position:relative;
+}
+
+h1{
+    font-size:22px;
+    margin-bottom:25px;
+    color:#ff5c8a;
+}
+
+.question{
+    font-size:18px;
+    margin-bottom:20px;
+}
+
+.options button{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    background:#e6a0a0;
+    transition:0.3s;
+    font-size:14px;
+}
+
+.options button:hover{
+    background:#ffb3c6;
+    transform:scale(1.05);
+}
+
+.correct{
+    background:#c8f7c5 !important;
+}
+
+.wrong{
+    background:#ffb3b3 !important;
+}
+
+#result{
+    margin-top:20px;
+    font-weight:600;
+    font-size:16px;
+}
+
+#nextBtn{
+    margin-top:20px;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#ff5c8a;
+    color:white;
+    cursor:pointer;
+    display:none;
+}
+
+#nextBtn:hover{
+    background:#ff3d73;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <h1>💘 How Well Do You Know Sophie?</h1>
+    <div class="question" id="question">Question here</div>
+    <div class="options" id="options"></div>
+    <div id="result"></div>
+    <button id="nextBtn">Next 🤍</button>
+</div>
+
+<script>
+const quizData = [
+{
+    question: "1. What makes Sophie the happiest?",
+    options: ["Big crowded parties","A quiet day with someone she loves","Waking up early for no reason","Doing nothing at all"],
+    answer: "A quiet day with someone she loves"
+},
+{
+    question: "2. When Sophie is sad, what does she usually need?",
+    options: ["Space forever","A long lecture","Reassurance and soft words","To be ignored"],
+    answer: "Reassurance and soft words"
+},
+{
+    question: "3. What makes Sophie overthink the most?",
+    options: ["Slow replies","No replies","Horror movies","Maths"],
+    answer: "No replies"
+},
+{
+    question: "4. What is Sophie’s love language?",
+    options: ["Receiving expensive gifts","Quality time","Public attention","Silence"],
+    answer: "Quality time"
+},
+{
+    question: "5. What kind of surprise would Sophie secretly love?",
+    options: ["Public proposal in a mall","Simple, private and meaningful moment","Expensive gift only","Nothing at all"],
+    answer: "Simple, private and meaningful moment"
+},
+{
+    question: "6. What makes Sophie feel the safest?",
+    options: ["Silence","Money","Calm","Drama"],
+    answer: "Calm"
+},
+{
+    question: "7. What is Sophie most afraid of in a relationship?",
+    options: ["Losing arguments","Not being understood","Watching sad movies","Posting on Instagram"],
+    answer: "Not being understood"
+},
+{
+    question: "8. If Sophie gets quiet, it usually means…",
+    options: ["She’s planning revenge","She’s sleepy","She’s feeling something","She forgot how to talk"],
+    answer: "She’s feeling something"
+},
+{
+    question: "9. What makes Sophie feel most loved?",
+    options: ["Being understood","Deep conversations at night","Random people texting her","Expensive surprises"],
+    answer: "Being understood"
+},
+{
+    question: "10. If Sophie says “it’s okay”, it usually means…",
+    options: ["It’s really okay","She forgot already","She’s still thinking about it","She doesn’t care"],
+    answer: "She’s still thinking about it"
+},
+{
+    question: "11. What kind of date would Sophie choose?",
+    options: ["Theme park with 200 people","Walking","Late night drive + deep talk","Loud concert"],
+    answer: "Late night drive + deep talk"
+},
+{
+    question: "12. What hurts Sophie the most?",
+    options: ["Harsh words","Being ignored","Cold weather","No WiFi"],
+    answer: "Harsh words"
+},
+{
+    question: "13. When Sophie loves someone, she…",
+    options: ["Loves halfway","Loves quietly but deeply","Pretends she doesn’t care","Gets bored easily"],
+    answer: "Loves quietly but deeply"
+},
+{
+    question: "14. What calms Sophie down the fastest?",
+    options: ["Silence without explanation","Reassurance and soft voice","Scrolling TikTok","Sleep only"],
+    answer: "Reassurance and soft voice"
+},
+{
+    question: "15. What does Sophie secretly need the most?",
+    options: ["More drama","Attention from everyone","Emotional security","Random surprises"],
+    answer: "Emotional security"
+},
+{
+    question: "16. What kind of relationship does Sophie want?",
+    options: ["Complicated","On and off","Stable, calm and loyal","Full of jealousy"],
+    answer: "Stable, calm and loyal"
+},
+{
+    question: "17. If Sophie overthinks, what helps the most?",
+    options: ["“Relax lah”","Ignoring her","Clear explanation + calmness","Changing topic"],
+    answer: "Clear explanation + calmness"
+},
+{
+    question: "18. What is Sophie’s fav flavour?",
+    options: ["Matcha","Fruity","Chocolate","Vanilla"],
+    answer: "Fruity"
+},
+{
+    question: "19. What makes Sophie melt instantly?",
+    options: ["Food","Sweet consistent effort","Public attention","Flexing"],
+    answer: "Food"
+},
+{
+    question: "20. At the end of the day, what does Sophie really want?",
+    options: ["Fame","Drama","Someone who chooses her every day","Nothing"],
+    answer: "Someone who chooses her every day"
+},
+{
+    question: "21. If Sophie ever gets distant, what does it usually mean?",
+    options: ["She’s done with everything","She needs time to process her feelings","She doesn’t care about the relationship","She’s angry forever"],
+    answer: "She needs time to process her feelings"
+},
+{
+    question: "22. At her core, what does Sophie want most from a partner?",
+    options: ["Someone flashy and exciting","Someone who chooses her, understands her, and stays through everything","Someone who competes with her","Someone who just entertains her"],
+    answer: "Someone who chooses her, understands her, and stays through everything"
+}
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const resultEl = document.getElementById("result");
+const nextBtn = document.getElementById("nextBtn");
+
+function loadQuestion(){
+    resultEl.innerHTML = "";
+    nextBtn.style.display = "none";
+    optionsEl.innerHTML = "";
+
+    const current = quizData[currentQuestion];
+    questionEl.innerText = current.question;
+
+    current.options.forEach(option=>{
+        const button = document.createElement("button");
+        button.innerText = option;
+        button.addEventListener("click",()=>selectAnswer(button,option));
+        optionsEl.appendChild(button);
+    });
+}
+
+function selectAnswer(button,option){
+    const correctAnswer = quizData[currentQuestion].answer;
+    const buttons = optionsEl.querySelectorAll("button");
+
+    buttons.forEach(btn=>btn.disabled=true);
+
+    if(option === correctAnswer){
+        button.classList.add("correct");
+        resultEl.innerHTML = "Correct 🤍 Good job sayang!";
+        score++;
+    }else{
+        button.classList.add("wrong");
+        resultEl.innerHTML = "Wrong 😭 You should know this!";
+        buttons.forEach(btn=>{
+            if(btn.innerText === correctAnswer){
+                btn.classList.add("correct");
+            }
+        });
+    }
+
+    nextBtn.style.display = "inline-block";
+}
+
+nextBtn.addEventListener("click",()=>{
+    currentQuestion++;
+    if(currentQuestion < quizData.length){
+        loadQuestion();
+    }else{
+        showFinalResult();
+    }
+});
+
+function showFinalResult(){
+    optionsEl.innerHTML = "";
+    nextBtn.style.display = "none";
+
+    if(score === quizData.length){
+        questionEl.innerHTML = "FULL MARKS 😭🤍";
+        resultEl.innerHTML = "You know your girlfriend so well. I love you sayang.";
+    }else if(score >= 15){
+        questionEl.innerHTML = "Not bad baby 🤭";
+        resultEl.innerHTML = "You got " + score + "/" + quizData.length + ". Still can improve!";
+    }else{
+        questionEl.innerHTML = "Hmmmm 😏";
+        resultEl.innerHTML = "You only got " + score + "/" + quizData.length + ". Looks like we need more dates.";
+    }
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>You, Me and Us</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== VIDEO BACKGROUND ===== */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* overlay gelap */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: -1;
+    }
+
+    h1 {
+      text-align: center;
+      color: #c1121f;
+      font-size: 3rem;
+      margin: 40px 0 10px;
+      letter-spacing: 3px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin: 50px 0 20px;
+      letter-spacing: 2px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 0 20px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(193,18,31,0.5);
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 30;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    /* ===== MUSIC BUTTON ===== */
+    .music-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 55px;
+      height: 55px;
+      background: rgba(193,18,31,0.9);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 22px;
+      cursor: pointer;
+      z-index: 40;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+      transition: 0.3s;
+    }
+
+    .music-btn:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.5rem; }
+      .gallery img { height: 150px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- VIDEO BACKGROUND -->
+  <video class="video-bg" autoplay muted loop playsinline>
+    <source src="background.mp4" type="video/mp4">
+  </video>
+
+  <!-- MUSIC -->
+  <audio id="bgMusic">
+    <source src="Awi Rafael - Bila Aku Jatuh Cinta.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- MUSIC BUTTON -->
+  <div class="music-btn" id="musicBtn">▶</div>
+
+  <h1>Gallery</h1>
+
+  <!-- ===== US ===== -->
+  <h2>Us</h2>
+  <div class="gallery">
+    <img src="ikram 2.jpg" alt="Us 1">
+    <img src="ikram 3.jpg" alt="Us 2">
+    <img src="ikram 4.jpg" alt="Us 3">
+    <img src="ikram 5.jpg" alt="Us 4">
+    <img src="ikram 6.jpg" alt="Us 5">
+    <img src="ikram 7.jpg" alt="Us 6">
+    <img src="ikram 8.jpg" alt="Us 7">
+    <img src="ikram 9.jpg" alt="Us 8">
+    <img src="ikram 10.jpg" alt="Us 9">
+    <img src="ikram 11.jpg" alt="Us 10">
+    <img src="ikram 12.jpg" alt="Us 11">
+    <img src="ikram 13.jpg" alt="Us 12">
+    <img src="ikram 14.jpg" alt="Us 13">
+    <img src="ikram 15.jpg" alt="Us 14">
+    <img src="ikram 16.jpg" alt="Us 15">
+  </div>
+
+  <!-- ===== PHOTOBOOTH ===== -->
+  <h2>Photobooth</h2>
+  <div class="gallery">
+    <img src="photobooth 1.jpg" alt="Photobooth 1">
+    <img src="photobooth 2.jpg" alt="Photobooth 2">
+    <img src="photobooth 3.jpg" alt="Photobooth 3">
+    <img src="photobooth 4.jpg" alt="Photobooth 4">
+    <img src="photobooth 5.jpg" alt="Photobooth 5">
+  </div>
+
+  <!-- ===== LOVE ===== -->
+  <h2>Love</h2>
+  <div class="gallery">
+    <img src="ikram 1.png" alt="Love 1">
+    <img src="love.jpg" alt="Love 2">
+    <img src="love 1.jpg" alt="Love 3">
+    <img src="love 2.jpg" alt="Love 3">
+    <img src="ikram 17.jpg" alt="Love 3">
+    <img src="love 3.jpg" alt="Love 3">
+    <img src="love 4.jpg" alt="Love 3">
+    <img src="love 5.jpg" alt="Love 3">
+    <img src="love 6.jpg" alt="Love 3">
+    <img src="love 7.jpg" alt="Love 3">
+    <img src="love 8.jpg" alt="Love 3">
+    <img src="love 9.jpg" alt="Love 3">
+    <img src="love 10.jpg" alt="Love 3">
+    <img src="love 11.jpg" alt="Love 3">
+    <img src="love 12.jpg" alt="Love 3">
+    <img src="love 13.jpg" alt="Love 3">
+    <img src="love 14.jpg" alt="Love 3">
+    <img src="love 15.jpg" alt="Love 3">
+    <img src="love 16.jpg" alt="Love 3">
+    <img src="love 17.jpg" alt="Love 3">
+  </div>
+
+   <!-- ===== KONVOKESYEN ===== -->
+  <h2>Proud moment</h2>
+  <div class="gallery">
+    <img src="convo 1.jpg" alt="Photobooth 1">
+    <img src="convo 2.jpg" alt="Photobooth 2">
+    <img src="convo 3.jpg" alt="Photobooth 3">
+    <img src="convo 4.jpg" alt="Photobooth 4">
+    <img src="convo 5.jpg" alt="Photobooth 5">
+    <img src="convo 6.jpg" alt="Photobooth 5">
+    <img src="convo 7.jpg" alt="Photobooth 5">
+    <img src="convo 8.jpg" alt="Photobooth 5">
+    <img src="convo 9.jpg" alt="Photobooth 5">
+    <img src="convo 10.jpg" alt="Photobooth 5">
+    <img src="convo 11.jpg" alt="Photobooth 5">
+    <img src="convo 12.jpg" alt="Photobooth 5">
+    <img src="convo 13.jpg" alt="Photobooth 5">
+    <img src="convo 14.jpg" alt="Photobooth 5">
+    <img src="convo 15.jpg" alt="Photobooth 5">
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <img id="modalImg">
+  </div>
+
+  <!-- ===== SCRIPT (SATU SAHAJA) ===== -->
+  <script>
+    const images = document.querySelectorAll(".gallery img");
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modalImg");
+
+    images.forEach(img => {
+      img.onclick = () => {
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+      };
+    });
+
+    modal.onclick = () => {
+      modal.style.display = "none";
+      modalImg.src = "";
+    };
+
+    const music = document.getElementById("bgMusic");
+    const musicBtn = document.getElementById("musicBtn");
+    let playing = false;
+
+    musicBtn.onclick = () => {
+      if (!playing) {
+        music.play();
+        musicBtn.textContent = "⏸";
+        playing = true;
+      } else {
+        music.pause();
+        musicBtn.textContent = "▶";
+        playing = false;
+      }
+    };
+  </script>
+
+</body>
+</html>
